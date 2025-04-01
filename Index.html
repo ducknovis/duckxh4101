@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duckxh4101</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo img {
+            height: 40px;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ff4081;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://scontent.fhan4-5.fna.fbcdn.net/v/t1.15752-9/487113897_632910199373343_6242813064822802977_n.png?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_ohc=jNnYkLImEiQQ7kNvgHEeJaS&_nc_oc=AdnPQ6qnD478nd7_WkR789BrV0EmVG8irZxPP3Vdc1ItqXbgHlMPRofo1oTZVSfknBI&_nc_zt=23&_nc_ht=scontent.fhan4-5.fna&oh=03_Q7cD1wFTfuMIyJApiFDQ9AJ1kkotw-PWZoulvNd62lPCl1FSUg&oe=681208CA') center/cover no-repeat;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: left;
+            max-width: 1200px;
+            padding: 0 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content .left {
+            max-width: 50%;
+        }
+
+        .hero-content .left h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content .left h1 span {
+            color: #ff4081;
+        }
+
+        .hero-content .left p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .hero-content .right {
+            max-width: 40%;
+        }
+
+        .hero-content .right h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content .right p {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 25px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn.discord {
+            background: #7289da;
+            color: #fff;
+        }
+
+        .btn.discord:hover {
+            background: #5a6eb5;
+        }
+
+        .btn.youtube {
+            background: #ff0000;
+            color: #fff;
+        }
+
+        .btn.youtube:hover {
+            Color: #cc0000;
+        }
+
+        /* Tab Navigation Buttons */
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            background: #ff4081;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            text-transform: uppercase;
+            transition: background 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: #e91e63;
+        }
+
+        /* Developers Section */
+        .developers {
+            padding: 100px 50px;
+            background: #1a1a1a;
+            text-align: center;
+        }
+
+        .developers h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .dev-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .dev-card {
+            text-align: center;
+        }
+
+        .dev-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid #ff4081;
+        }
+
+        .dev-card h3 {
+            font-size: 24px;
+            color: #ff4081;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding: 50px;
+            background: #2a2a2a;
+            text-align: center;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .tab-content p {
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        /* PC, Mobile, Script Tab Sections */
+        .pc-sections, .mobile-sections, .script-sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .pc-section, .mobile-section, .script-section {
+            background: #3a3a3a;
+            border-radius: 15px;
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .pc-section:hover, .mobile-section:hover, .script-section:hover {
+            transform: scale(1.05);
+        }
+
+        .pc-section img, .mobile-section img, .script-section img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .pc-section h3, .mobile-section h3, .script-section h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ff4081;
+        }
+
+        .pc-section p, .mobile-section p, .script-section p {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .modal-content h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff4081;
+        }
+
+        .modal-content p {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            margin: 15px 0;
+        }
+
+        .modal-content .modal-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 8px 0;
+            background: #ff4081;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+        }
+
+        .modal-content .modal-btn:hover {
+            background: #e91e63;
+        }
+
+        .modal-content .discord-link {
+            color: #7289da;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .modal-content .discord-link:hover {
+            color: #5a6eb5;
+        }
+
+        .modal-content textarea {
+            width: 100%;
+            height: 80px;
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid #ff4081;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+            margin: 10px 0;
+            resize: none;
+        }
+
+        .modal-content textarea[readonly] {
+            background: #333;
+            cursor: not-allowed;
+        }
+
+        .modal-content .copy-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 8px 0;
+            background: #7289da;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .modal-content .copy-btn:hover {
+            background: #5a6eb5;
+        }
+
+        .modal-scrollable {
+            max-height: 60vh; /* Limit the height to 60% of the viewport height */
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding-right: 10px; /* Add padding to prevent content from touching the scrollbar */
+        }
+
+        .modal-scrollable::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-scrollable::-webkit-scrollbar-track {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        .modal-scrollable::-webkit-scrollbar-thumb {
+            background: #ff4081;
+            border-radius: 10px;
+        }
+
+        .modal-scrollable::-webkit-scrollbar-thumb:hover {
+            background: #e91e63;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 2100;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 8px;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            color: #ff4081;
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://tr.rbxcdn.com/180DAY-433e973b5fbc1e8d5cdebd0c6be03472/150/150/Decal/Webp/noFilter" alt="Duckxh4101 Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#" onclick="showTab('home')">Home</a>
+            <a href="#" onclick="showTab('pc')">PC</a>
+            <a href="#" onclick="showTab('mobile')">Mobile</a>
+            <a href="#" onclick="showTab('script')">Script</a>
+            <a href="#" onclick="showTab('others')">Others</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="left">
+                <h1>Duckxh4101 <span>Home tools</span>.</h1>
+                <p>Website chính thức tổng hợp nhiều loại tool code bởi 3 nhà phát triển: ducknovis, hieudz và h4vn</p>
+                <div class="buttons">
+                    <a href="https://discord.gg/3PyeVU7qE8" class="btn discord">Discord</a>
+                    <a href="https://www.youtube.com/@ductrenyt" class="btn youtube">YouTube</a>
+                </div>
+            </div>
+            <div class="right">
+                <h2 id="dynamic-title">Duckxh4101 Home tools.</h2>
+                <p>Công cụ mạnh mẽ giúp bạn dễ dàng sử dụng các tool code trên thiết bị di động.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab Content -->
+    <div id="home" class="tab-content active">
+        <h2>Welcome to Duckxh4101</h2>
+        <p>Explore a variety of tools developed by our team for all your coding needs.</p>
+        <div class="tab-buttons">
+            <a href="#" onclick="showTab('pc')" class="tab-btn">PC Tools</a>
+            <a href="#" onclick="showTab('mobile')" class="tab-btn">Mobile Tools</a>
+            <a href="#" onclick="showTab('script')" class="tab-btn">Script Tools</a>
+            <a href="#" onclick="showTab('others')" class="tab-btn">Other Tools</a>
+        </div>
+    </div>
+
+    <div id="pc" class="tab-content">
+        <h2>PC Tools</h2>
+        <p>Discover tools optimized for PC users, enhancing your coding experience with powerful features.</p>
+        <div class="pc-sections">
+            <div class="pc-section" onclick="openModal('sigma-cloud')">
+                <img src="https://scontent.fhan4-5.fna.fbcdn.net/v/t1.15752-9/487113897_632910199373343_6242813064822802977_n.png?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_ohc=jNnYkLImEiQQ7kNvgHEeJaS&_nc_oc=AdnPQ6qnD478nd7_WkR789BrV0EmVG8irZxPP3Vdc1ItqXbgHlMPRofo1oTZVSfknBI&_nc_zt=23&_nc_ht=scontent.fhan4-5.fna&oh=03_Q7cD1wFTfuMIyJApiFDQ9AJ1kkotw-PWZoulvNd62lPCl1FSUg&oe=681208CA" alt="Sigma Cloud">
+                <h3>Sigma Cloud</h3>
+                <p>Sigma Cloud For Pc cực múp cho việc treo game thoả ga Cực nhiều tab</p>
+            </div>
+            <div class="pc-section" onclick="openModal('duckxh4101-executor')">
+                <img src="https://scontent.fhan3-2.fna.fbcdn.net/v/t1.15752-9/487207292_1591164501564331_1367193064866769118_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=i86M2YdYlx8Q7kNvgHnBfMl&_nc_oc=AdnRYTD3fVfn8S_THDoJ7Ptuo61GnDEuNq60QON474c2iNmPBprRANQRl4qLi9ydLPw&_nc_zt=23&_nc_ht=scontent.fhan3-2.fna&oh=03_Q7cD1wF_gxn1r9HMCx8XfwEGrn0WR6AwgS7xG5Zde3ALsvXceg&oe=681209FC" alt="Duckxh4101 Executor">
+                <h3>Duckxh4101 Executor</h3>
+                <p>Duckxh4101 executor cực múp hack roblox pc nhanh mượt ổn định ít văng nhiều api v.v</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="mobile" class="tab-content">
+        <h2>Mobile Tools</h2>
+        <p>Access our tools on the go with mobile-optimized solutions for seamless coding.</p>
+        <div class="mobile-sections">
+            <div class="mobile-section" onclick="openModal('sigma-cloud-mobile')">
+                <img src="https://scontent.fhan4-4.fna.fbcdn.net/v/t1.15752-9/486416235_4133513976878641_1712883092296846820_n.png?_nc_cat=111&ccb=1-7&_nc_sid=9f807c&_nc_ohc=v7E2AnfZqDsQ7kNvgEggG34&_nc_oc=AdkRmO1nu6-zEz4TOJ7blKkXn5v5N-GYXyLTDtKyJq6kSUC0whctdFibvkuSF-eXsTo&_nc_zt=23&_nc_ht=scontent.fhan4-4.fna&oh=03_Q7cD1wE8VbYVTt5zINlR6xlTGVP8-EPQUedaDYSHXI-UR8DmEA&oe=6812DB16" alt="Sigma Cloud Mobile">
+                <h3>Sigma Cloud Mobile</h3>
+                <p>Sigma cloud for mobile cực múp cho việc treo game treo 1 lúc nhiều con acc</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="script" class="tab-content">
+        <h2>Script Tools</h2>
+        <p>Find a collection of script tools designed to simplify your coding tasks.</p>
+        <div class="script-sections">
+            <div class="script-section" onclick="openModal('dhhz-hub')">
+                <img src="https://media.discordapp.net/attachments/1349975282173480990/1356157564198322246/image.png?ex=67ec3467&is=67eae2e7&hm=72c3eb255010cbe2b8225774a75ce600737f8b25e858c9728a3fe26fe2be1a4b&=&format=webp&quality=lossless&width=1079&height=552" alt="DHHz Hub">
+                <h3>DHHz Hub Script VIP for Bloxfruit</h3>
+                <p>Script bloxfruit vip</p>
+            </div>
+            <div class="script-section" onclick="openModal('bypass-yeumoney-hieudz')">
+                <img src="https://media.discordapp.net/attachments/1349975282173480990/1353373157020401734/A97A67E7-BDA8-4EBA-8091-1AAF370C96AF.png?ex=67ec9f39&is=67eb4db9&hm=c58343f1cb03c3a536d001f3a33797695bf40e444cc32df558a771bcda3ad451&=&format=webp&quality=lossless" alt="Bypass Yeumoney Hieudz">
+                <h3>Bypass Yeumoney Hieudz</h3>
+                <p>Script bypass yeumoney by hieudz</p>
+            </div>
+            <div class="script-section" onclick="openModal('bypass-yeumoney-phantatdung')">
+                <img src="https://scontent.fhan3-4.fna.fbcdn.net/v/t1.15752-9/486416235_28861272963519618_5261068246940038677_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=uX0px0VofG8Q7kNvgHlQLgV&_nc_oc=Adn9AU6BT-6HvCTBS6Aa6jE9XcIzV3bPyWrhmZb8rG8r6xzHx-szqDTa-273JwbDqL0&_nc_zt=23&_nc_ht=scontent.fhan3-4.fna&oh=03_Q7cD1wF_rrlunpuYwVK5PPvf1MQwOxEUP_Z8fb3KGSbWxN4YBw&oe=6812D7CC" alt="Bypass Yeumoney Phantatdung">
+                <h3>Bypass Yeumoney Phantatdung</h3>
+                <p>Script bypass yeumoney by Xgreen</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="others" class="tab-content">
+        <h2>Other Tools</h2>
+        <p>Explore miscellaneous tools that can assist in various coding and development projects.</p>
+    </div>
+
+    <!-- Developers Section (Only for Home Tab) -->
+    <section class="developers" id="developers-section">
+        <h2>Meet Our Developers</h2>
+        <div class="dev-grid">
+            <div class="dev-card">
+                <img src="https://cdn.discordapp.com/avatars/1051413283145535498/2035d8386c739115150d12fb7ac459f4.png?size=4096" alt="ducknovis">
+                <h3>ducknovis</h3>
+            </div>
+            <div class="dev-card">
+                <img src="https://cdn.discordapp.com/avatars/929981636404199465/9e0773f3804430a7c266eff6d81a765b.png?size=4096" alt="hieudz">
+                <h3>hieudz</h3>
+            </div>
+            <div class="dev-card">
+                <img src="https://cdn.discordapp.com/avatars/1144471503270858752/01ada9f47f83bb2d82a5477a2f14af1f.png?size=4096" alt="h4vn">
+                <h3>h4vn</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">X</span>
+            <div class="modal-scrollable" id="modal-content">
+                <!-- Content will be dynamically updated -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show the selected tab content
+            document.getElementById(tabId).classList.add('active');
+
+            // Show or hide the developers section based on the active tab
+            const developersSection = document.getElementById('developers-section');
+            if (tabId === 'home') {
+                developersSection.style.display = 'block';
+            } else {
+                developersSection.style.display = 'none';
+            }
+
+            // Update the dynamic title in the hero section
+            const dynamicTitle = document.getElementById('dynamic-title');
+            if (tabId === 'home') {
+                dynamicTitle.textContent = 'Duckxh4101 Home tools.';
+            } else if (tabId === 'pc') {
+                dynamicTitle.textContent = 'Duckxh4101 Home tools PC.';
+            } else if (tabId === 'mobile') {
+                dynamicTitle.textContent = 'Duckxh4101 Home tools MOBILE.';
+            } else if (tabId === 'script') {
+                dynamicTitle.textContent = 'Duckxh4101 Home tools SCRIPT.';
+            } else if (tabId === 'others') {
+                dynamicTitle.textContent = 'Duckxh4101 Home tools OTHERS.';
+            }
+        }
+
+        function copyScript(scriptId) {
+            const scriptText = document.getElementById(scriptId).value;
+            navigator.clipboard.writeText(scriptText).then(() => {
+                alert('Script copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy script: ', err);
+                alert('Failed to copy script. Please copy it manually.');
+            });
+        }
+
+        function openModal(section) {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            if (section === 'sigma-cloud') {
+                modalContent.innerHTML = `
+                    <h2>Sigma Cloud for PC</h2>
+                    <p>Cloud treo miễn phí từ 2h -> 6h với nowgg fix vpn và multi 1 lúc 30 acc</p>
+                    <p>Build by ducknovis (10% by h4vn)</p>
+                    <p>Video hướng dẫn</p>
+                    <a href="https://www.youtube.com/watch?v=5ZIj_1HcLb0" target="_blank" class="modal-btn">Watch on YouTube</a>
+                    <iframe src="https://www.youtube.com/embed/5ZIj_1HcLb0" allowfullscreen></iframe>
+                    <p>Download:</p>
+                    <a href="https://gofile.io/d/qEhFFR" target="_blank" class="modal-btn">Download Now</a>
+                    <p>Join <a href="https://discord.gg/3PyeVU7qE8" target="_blank" class="discord-link">Discord</a> for update !!!</p>
+                `;
+            } else if (section === 'duckxh4101-executor') {
+                modalContent.innerHTML = `
+                    <h2>Duckxh4101 Executor</h2>
+                    <p>Hack cho roblox cực kì chất lượng tổng hợp các api vip + ko văng cho người dùng + no key sử dụng thoải mái</p>
+                    <p>Build by h4vn (15% by ducknovis)</p>
+                    <p>Video review</p>
+                    <a href="https://www.youtube.com/watch?v=BTy4HIsMuH4&t" target="_blank" class="modal-btn">Watch on YouTube</a>
+                    <iframe src="https://www.youtube.com/embed/BTy4HIsMuH4" allowfullscreen></iframe>
+                    <p>Download:</p>
+                    <a href="https://gofile.io/d/1nWQji" target="_blank" class="modal-btn">Download Now</a>
+                    <p>Join <a href="https://discord.gg/3PyeVU7qE8" target="_blank" class="discord-link">Discord</a> for update !!!</p>
+                `;
+            } else if (section === 'sigma-cloud-mobile') {
+                modalContent.innerHTML = `
+                    <h2>Sigma Cloud for Mobile</h2>
+                    <p>Sigma cloud for mobile cực múp cho việc treo game treo 1 lúc nhiều con acc</p>
+                    <p>Build app with webintoapp</p>
+                    <p>Video hướng dẫn</p>
+                    <a href="https://sites.google.com/view/notfoundlink/trang-ch%E1%BB%A7" target="_blank" class="modal-btn">Watch on YouTube</a>
+                    <iframe src="https://www.youtube.com/embed/notfoundlink" allowfullscreen></iframe>
+                    <p>Download:</p>
+                    <a href="https://gofile.io/d/L9rWgJ" target="_blank" class="modal-btn">Download Now</a>
+                    <p>Join <a href="https://discord.gg/3PyeVU7qE8" target="_blank" class="discord-link">Discord</a> for update !!!</p>
+                `;
+            } else if (section === 'dhhz-hub') {
+                modalContent.innerHTML = `
+                    <h2>DHHz Hub Script VIP for Bloxfruit</h2>
+                    <p>Script bloxfruit vip</p>
+                    <p>Code by hieudz and ducknovis</p>
+                    <p>Video rì viu</p>
+                    <a href="https://sites.google.com/view/notfoundlink/trang-ch%E1%BB%A7" target="_blank" class="modal-btn">Watch on YouTube</a>
+                    <iframe src="https://www.youtube.com/embed/notfoundlink" allowfullscreen></iframe>
+                    <p>Lấy script:</p>
+                    <textarea readonly id="dhhz-script" onclick="this.select()">loadstring(game:HttpGet("https://raw.githubusercontent.com/Hieugamingmc747/HieuHub/refs/heads/main/Main.lua"))()</textarea>
+                    <button class="copy-btn" onclick="copyScript('dhhz-script')">Copy Script</button>
+                    <p>Join <a href="https://discord.gg/3PyeVU7qE8" target="_blank" class="discord-link">Discord</a> for update !!!</p>
+                `;
+            } else if (section === 'bypass-yeumoney-hieudz') {
+                modalContent.innerHTML = `
+                    <h2>Bypass Yeumoney Hieudz</h2>
+                    <p>Script bypass yeumoney by hieudz</p>
+                    <p>Make by hieudz (2% ducknovis)</p>
+                    <img src="https://media.discordapp.net/attachments/1349975282173480990/1353373157020401734/A97A67E7-BDA8-4EBA-8091-1AAF370C96AF.png?ex=67ec9f39&is=67eb4db9&hm=c58343f1cb03c3a536d001f3a33797695bf40e444cc32df558a771bcda3ad451&=&format=webp&quality=lossless" alt="Bypass Yeumoney Hieudz">
+                    <p>Get script:</p>
+                    <a href="https://github.com/Hieugamingmc747/BypassYeumoney/raw/refs/heads/main/BypassYeumoneyUpdate.user.js" target="_blank" class="modal-btn">Get Script</a>
+                    <p>Turn on developer mode at:</p>
+                    <a href="chrome://extensions/" target="_blank" class="modal-btn">chrome://extensions/</a>
+                    <p>Get tampermonkey:</p>
+                    <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=vi&pli=1" target="_blank" class="modal-btn">Get Tampermonkey</a>
+                    <p>Join <a href="https://discord.gg/3PyeVU7qE8" target="_blank" class="discord-link">Discord</a> for update !!!</p>
+                `;
+            } else if (section === 'bypass-yeumoney-phantatdung') {
+                modalContent.innerHTML = `
+                    <h2>Bypass Yeumoney Phantatdung</h2>
+                    <p>Script bypass yeumoney by Xgreen</p>
+                    <p>Make by Xgreen</p>
+                    <img src="https://scontent.fhan3-4.fna.fbcdn.net/v/t1.15752-9/486416235_28861272963519618_5261068246940038677_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=uX0px0VofG8Q7kNvgHlQLgV&_nc_oc=Adn9AU6BT-6HvCTBS6Aa6jE9XcIzV3bPyWrhmZb8rG8r6xzHx-szqDTa-273JwbDqL0&_nc_zt=23&_nc_ht=scontent.fhan3-4.fna&oh=03_Q7cD1wF_rrlunpuYwVK5PPvf1MQwOxEUP_Z8fb3KGSbWxN4YBw&oe=6812D7CC" alt="Bypass Yeumoney Phantatdung">
+                    <p>Get script:</p>
+                    <a href="https://github.com/Hieugamingmc747/BypassYeumoney/raw/refs/heads/main/BypassYeumoneyUpdate.user.js" target="_blank" class="modal-btn">Get Script</a>
+                    <p>Turn on developer mode at:</p>
+                    <a href="chrome://extensions/" target="_blank" class="modal-btn">chrome://extensions/</a>
+                    <p>Get tampermonkey:</p>
+                    <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=vi&pli=1" target="_blank" class="modal-btn">Get Tampermonkey</a>
+                    <p>Join <a href="https://discord.gg/3PyeVU7qE8" target="_blank" class="discord-link">Discord</a> for update !!!</p>
+                `;
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        // Ensure the developers section is visible on page load (Home tab is active by default)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('developers-section').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
